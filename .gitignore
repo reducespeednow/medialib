@@ -1,0 +1,21 @@
+# Media
+/downloads/
+/shared_media/
+
+# Jellyfin: ignore everything except config + library definitions
+/jellyfin_data/*
+!/jellyfin_data/config/
+!/jellyfin_data/root/
+!/jellyfin_data/plugins/
+/jellyfin_data/config/users/
+/jellyfin_data/plugins/*
+!/jellyfin_data/plugins/configurations/
+/jellyfin_data/root/**/*.jpg
+
+# qBittorrent: ignore everything except the script and small settings
+/qbit_data/*
+!/qbit_data/auto_move.sh
+!/qbit_data/qBittorrent/
+/qbit_data/qBittorrent/*
+!/qbit_data/qBittorrent/categories.json
+!/qbit_data/qBittorrent/watched_folders.json
