@@ -1,5 +1,7 @@
 # medialib
 
+<img width="2875" height="1608" alt="image" src="https://github.com/user-attachments/assets/e5210cc4-4228-4bdd-9a19-60e3fff3a412" />
+
 self-hosted media stack using Docker Compose:
 
 - **Jellyfin** – streams the library at http://localhost:8096
