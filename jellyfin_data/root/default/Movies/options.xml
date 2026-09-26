@@ -14,6 +14,7 @@
     </MediaPathInfo>
   </PathInfos>
   <SaveLocalMetadata>false</SaveLocalMetadata>
+  <EnableInternetProviders>false</EnableInternetProviders>
   <EnableAutomaticSeriesGrouping>false</EnableAutomaticSeriesGrouping>
   <EnableEmbeddedTitles>false</EnableEmbeddedTitles>
   <EnableEmbeddedExtrasTitles>false</EnableEmbeddedExtrasTitles>
@@ -71,6 +72,10 @@
         <string>Screen Grabber</string>
       </ImageFetcherOrder>
       <ImageOptions />
+      <SimilarItemProviders>
+        <string>Local Genre/Tag</string>
+      </SimilarItemProviders>
+      <SimilarItemProviderOrder />
     </TypeOptions>
   </TypeOptions>
 </LibraryOptions>

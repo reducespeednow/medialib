@@ -28,7 +28,7 @@ self-hosted media stack using Docker Compose:
    chmod +x qbit_data/auto_move.sh
    ```
 
-   create the folders before starting the containers, otherwise Docker creates them owned by root
+   create the folders before starting the containers, otherwise Docker creates them owned by root. `PUID`/`PGID` in `docker-compose.yml` must match user (`id -u` / `id -g`), otherwise qBittorrent can't write into `shared_media/`
 
 2. **start the stack**
 
@@ -43,6 +43,7 @@ self-hosted media stack using Docker Compose:
    - Downloads → Default save path: `/downloads`
    - Downloads → "Run external program on torrent finished":
      `bash /config/auto_move.sh "%F" "%L" "%N"`
+   - give every torrent a category (`movies`, `shows` or `animated`), otherwise the script skips it. check `qbit_data/debug.log` if something doesn't move. to re-run it by hand, run it inside the container: `docker exec qbittorrent bash /config/auto_move.sh "/downloads/<name>" shows "<name>"`
 
 4. **set up Jellyfin** (http://localhost:8096)
    - complete the setup wizard and create the admin user
