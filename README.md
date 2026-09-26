@@ -42,7 +42,7 @@ self-hosted media stack using Docker Compose:
    - Tools → Options → Web UI: set a permanent password
    - Downloads → Default save path: `/downloads`
    - Downloads → "Run external program on torrent finished":
-     `/config/auto_move.sh <args>` (see the top of the script for the arguments it expects)
+     `bash /config/auto_move.sh "%F" "%L" "%N"`
 
 4. **set up Jellyfin** (http://localhost:8096)
    - complete the setup wizard and create the admin user
@@ -50,7 +50,7 @@ self-hosted media stack using Docker Compose:
      `jellyfin_data/root/default`. if they don't show up, add them manually
      under Dashboard → Libraries, pointing at `/media/Movies`, `/media/Shows`
      and `/media/Animated`
-   - uun a library scan. posters and metadata download automatically.
+   - run a library scan. posters and metadata download automatically.
 
 ## updating
 
