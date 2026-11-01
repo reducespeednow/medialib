@@ -53,6 +53,34 @@ self-hosted media stack using Docker Compose:
      and `/media/Animated`
    - run a library scan. posters and metadata download automatically.
 
+## watching on a tv (raspberry pi)
+
+a Pi 4 or Pi 5 running LibreELEC (Kodi) works as a TV client for the server. the Pi only plays media; the stack above keeps running on the host machine.
+
+1. **flash LibreELEC**
+   - on a laptop, open [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
+   - choose the Pi model, then OS → Media player OS → LibreELEC, and write it to a microSD card (16GB+)
+
+2. **connect the Pi**
+
+3. **add the Jellyfin repository**
+   - Settings → System → Add-ons: enable "Unknown sources"
+   - Settings → File manager → Add source: `https://kodi.jellyfin.org`, name it `jellyfin`
+   - Add-ons → Install from zip file → `jellyfin` → `repository.jellyfin.kodi.zip`
+
+4. **install the add-on**
+   - Add-ons → Install from repository → Kodi Jellyfin Add-ons → Video add-ons → **Jellyfin**
+   - it syncs the library into Kodi's normal Movies/TV menus. **JellyCon** (same repo) is a lighter alternative that browses the server without syncing
+
+5. **connect to the server**
+   - open the add-on and enter the host machine's LAN address, e.g. `http://192.168.1.x:8096` (not `localhost`). find it with `ip -4 addr` on the host
+   - auto-discovery may not work because Jellyfin runs in Docker, so enter the address manually
+   - log in with a Jellyfin user and pick the libraries to sync
+
+notes:
+
+- the host's firewall must allow port `8096` from the LAN
+
 ## updating
 
 ```bash
