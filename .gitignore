@@ -19,3 +19,9 @@
 /qbit_data/qBittorrent/*
 !/qbit_data/qBittorrent/categories.json
 !/qbit_data/qBittorrent/watched_folders.json
+
+/prowlarr_data/
+/radarr_data/
+/seerr_data/
+/sonarr_data/
+

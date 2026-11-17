@@ -26,3 +26,63 @@ services:
       - 6881:6881
       - 6881:6881/udp
     restart: unless-stopped
+
+  # Path rule: Radarr/Sonarr must see the download folder at the SAME path
+  # qBittorrent uses (/downloads), otherwise they can't find finished files.
+
+  radarr: # movies
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    environment:
+      - PUID=1000
+      - PGID=100
+      - TZ=Europe/London
+    volumes:
+      - ./radarr_data:/config
+      - ./downloads:/downloads # same path as in qbittorrent
+      - ./shared_media:/media # library root(s): /media/videos, /media/animated
+    ports:
+      - 7878:7878
+    restart: unless-stopped
+
+  sonarr: # TV shows
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    environment:
+      - PUID=1000
+      - PGID=100
+      - TZ=Europe/London
+    volumes:
+      - ./sonarr_data:/config
+      - ./downloads:/downloads
+      - ./shared_media:/media # library root(s): /media/shows, /media/animated
+    ports:
+      - 8989:8989
+    restart: unless-stopped
+
+  prowlarr: # manages indexers (torrent sites) for Radarr + Sonarr
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    environment:
+      - PUID=1000
+      - PGID=100
+      - TZ=Europe/London
+    volumes:
+      - ./prowlarr_data:/config
+    ports:
+      - 9696:9696
+    restart: unless-stopped
+
+  seerr: # the browse & request UI
+    image: ghcr.io/seerr-team/seerr:latest
+    container_name: seerr
+    init: true
+    environment:
+      - LOG_LEVEL=info
+      - TZ=Europe/London
+      - PORT=5055
+    volumes:
+      - ./seerr_data:/app/config
+    ports:
+      - 5055:5055
+    restart: unless-stopped
